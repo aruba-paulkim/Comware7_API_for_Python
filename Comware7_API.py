@@ -1,6 +1,7 @@
 # pip install requests
 # -*- coding: utf-8 -*-
 import requests, json, base64, sys
+from getpass import getpass
 
 from requests.packages.urllib3.exceptions import InsecureRequestWarning 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -8,13 +9,13 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 API_BASE = "https://{COMWARE7_IP}"
 API_AUTH = "YOUR_LOGIN_ID:YOUR_LOGIN_PW"
 
-if len(sys.argv) < 4 :
-    print("python3 Comware7_API.py {add|del} acct_id acct_pw")
+if len(sys.argv) < 3 :
+    print("python3 Comware7_API.py {add|del} acct_id")
     exit()
 
 mode = sys.argv[1]
 acct_id = sys.argv[2]
-acct_pw = sys.argv[3]
+acct_pw = getpass()
 
 #1. Get Token
 #POST /api/v1/tokens
