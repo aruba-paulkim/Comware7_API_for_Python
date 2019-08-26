@@ -8,10 +8,12 @@ source bin/activate
 pip install -r requirements.txt</pre>
 
 
-### Change Config
-<pre>
+### Config
+change Comware7_API.py file
+<pre>...
 API_BASE = "https://{COMWARE7_IP}"
 API_AUTH = "YOUR_LOGIN_ID:YOUR_LOGIN_PW"
+...
 </pre>
 
 
