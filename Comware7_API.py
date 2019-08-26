@@ -77,7 +77,7 @@ if mode == "add" :
     #{"UserName": "admin","Password": "asd "}
     print("-> Setup password")
     headers = {"X-Auth-Token": tokenid, 'Content-Type':'application/json'}
-    payload = {"UserName":acct_id,"Password":acct_id}
+    payload = {"UserName":acct_id,"Password":acct_pw}
     
     try:
         API_URL = "/api/v1/UserAccounts/ChangePasswords"
