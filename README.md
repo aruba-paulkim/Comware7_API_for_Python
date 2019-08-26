@@ -18,4 +18,4 @@ API_AUTH = "YOUR_LOGIN_ID:YOUR_LOGIN_PW"
 
 
 ### Run
-<pre>python3 Comware7_API.py {add|del} acct_name</pre>
+<pre>python3 Comware7_API.py {add|del} acct_id acct_pw</pre>

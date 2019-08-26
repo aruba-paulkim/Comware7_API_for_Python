@@ -8,12 +8,13 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 API_BASE = "https://{COMWARE7_IP}"
 API_AUTH = "YOUR_LOGIN_ID:YOUR_LOGIN_PW"
 
-if len(sys.argv) < 3 :
-    print("python3 Comware7_API.py {add|del} acct_name")
+if len(sys.argv) < 4 :
+    print("python3 Comware7_API.py {add|del} acct_id acct_pw")
     exit()
 
 mode = sys.argv[1]
-acct_name = sys.argv[2]
+acct_id = sys.argv[2]
+acct_pw = sys.argv[3]
 
 #1. Get Token
 #POST /api/v1/tokens
@@ -59,7 +60,7 @@ if mode == "add" :
     #{"Name": "qwer"}
     print("-> Add user.")
     headers = {"X-Auth-Token":tokenid,'Content-Type':'application/json'}
-    payload = {"Name":acct_name,"HTTPS":"true","SSH":"true"}
+    payload = {"Name":acct_id,"HTTPS":"true","SSH":"true"}
     
     try:
         API_URL = "/api/v1/UserAccounts/Management/Accounts"
@@ -75,7 +76,7 @@ if mode == "add" :
     #{"UserName": "admin","Password": "asd "}
     print("-> Setup password")
     headers = {"X-Auth-Token": tokenid, 'Content-Type':'application/json'}
-    payload = {"UserName":acct_name,"Password":"P@ssw0rd"}
+    payload = {"UserName":acct_id,"Password":acct_id}
     
     try:
         API_URL = "/api/v1/UserAccounts/ChangePasswords"
@@ -93,7 +94,7 @@ elif mode == "del" :
     headers = {"X-Auth-Token": tokenid, 'Content-Type':'application/json'}
     
     try:
-        API_URL = "/api/v1/UserAccounts/Management/Accounts?index=Name="+acct_name
+        API_URL = "/api/v1/UserAccounts/Management/Accounts?index=Name="+acct_id
         r = requests.delete(API_BASE+API_URL, headers=headers, verify=False)
         r.raise_for_status()
     except Exception as e:
